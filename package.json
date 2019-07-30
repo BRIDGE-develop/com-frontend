@@ -18,6 +18,7 @@
         "eslint-config-prettier": "^6.0.0",
         "eslint-config-react": "^1.1.7",
         "eslint-plugin-prettier": "^3.1.0",
+        "eslint-plugin-react-hooks": "^1.6.1",
         "husky": "^3.0.2",
         "lint-staged": "^9.2.1",
         "post-npm-install": "^1.0.0",
