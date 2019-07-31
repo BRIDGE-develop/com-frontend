@@ -17,19 +17,21 @@
         "@typescript-eslint/parser": "^1.13.0",
         "eslint-config-prettier": "^6.0.0",
         "eslint-config-react": "^1.1.7",
+        "eslint-plugin-jest": "^22.14.0",
         "eslint-plugin-prettier": "^3.1.0",
         "eslint-plugin-react-hooks": "^1.6.1",
         "husky": "^3.0.2",
         "lint-staged": "^9.2.1",
         "post-npm-install": "^1.0.0",
-        "prettier": "^1.18.2"
+        "prettier": "^1.18.2",
+        "pretty-quick": "^1.11.1"
     },
     "scripts": {
         "start": "react-scripts start",
         "build": "react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject",
-        "lint": "eslint ./src/**/*.{ts,tsx}"
+        "lint": "eslint ./src/**/*.{js,jsx,ts,tsx}"
     },
     "eslintConfig": {
         "extends": "react-app"
@@ -49,14 +51,11 @@
     "proxy": "http://localhost:3000",
     "husky": {
         "hooks": {
-            "pre-commit": "lint-staged",
+            "pre-commit": "pretty-quick --staged --verbose && lint-staged",
             "post-merge": "post-npm-install"
         }
     },
     "lint-staged": {
-        "src/**/*.{ts,tsx}": [
-            "prettier --config .prettierrc --write",
-            "npm run lint"
-        ]
+        "src/**/*.{js,jsx,ts,tsx}": "eslint"
     }
 }
