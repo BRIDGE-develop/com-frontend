@@ -15,6 +15,7 @@
     "devDependencies": {
         "@typescript-eslint/eslint-plugin": "^1.13.0",
         "@typescript-eslint/parser": "^1.13.0",
+        "cross-env": "^5.2.0",
         "eslint-config-prettier": "^6.0.0",
         "eslint-config-react": "^1.1.7",
         "eslint-plugin-jest": "^22.14.0",
@@ -27,7 +28,7 @@
         "pretty-quick": "^1.11.1"
     },
     "scripts": {
-        "start": "react-scripts start",
+        "start": "cross-env PORT=8080 react-scripts start",
         "build": "react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject",
@@ -48,7 +49,7 @@
             "last 1 safari version"
         ]
     },
-    "proxy": "http://localhost:3000",
+    "proxy": "http://localhost:8080",
     "husky": {
         "hooks": {
             "pre-commit": "pretty-quick --staged --verbose && lint-staged",
