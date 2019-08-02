@@ -2,6 +2,13 @@
     "name": "com-frontend",
     "version": "0.1.0",
     "private": true,
+    "scripts": {
+        "start": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject",
+        "lint": "eslint ./src/**/*.{ts,tsx}"
+    },
     "dependencies": {
         "@types/jest": "24.0.15",
         "@types/node": "12.0.10",
@@ -23,16 +30,6 @@
         "lint-staged": "^9.2.1",
         "post-npm-install": "^1.0.0",
         "prettier": "^1.18.2"
-    },
-    "scripts": {
-        "start": "react-scripts start",
-        "build": "react-scripts build",
-        "test": "react-scripts test",
-        "eject": "react-scripts eject",
-        "lint": "eslint ./src/**/*.{ts,tsx}"
-    },
-    "eslintConfig": {
-        "extends": "react-app"
     },
     "browserslist": {
         "production": [
