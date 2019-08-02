@@ -7,19 +7,18 @@
         "build": "react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject",
-        "lint": "eslint ./src/**/*.{js,jsx,ts,tsx}"
+        "lint": "eslint ./src/**/*.{ts,tsx,js,jsx}"
     },
     "dependencies": {
+        "react": "^16.8.6",
+        "react-dom": "^16.8.6",
+        "react-scripts": "3.0.1"
+    },
+    "devDependencies": {
         "@types/jest": "24.0.15",
         "@types/node": "12.0.10",
         "@types/react": "16.8.22",
         "@types/react-dom": "16.8.4",
-        "react": "^16.8.6",
-        "react-dom": "^16.8.6",
-        "react-scripts": "3.0.1",
-        "typescript": "3.5.2"
-    },
-    "devDependencies": {
         "@typescript-eslint/eslint-plugin": "^1.13.0",
         "@typescript-eslint/parser": "^1.13.0",
         "cross-env": "^5.2.0",
@@ -32,7 +31,9 @@
         "lint-staged": "^9.2.1",
         "post-npm-install": "^1.0.0",
         "prettier": "^1.18.2",
-        "pretty-quick": "^1.11.1"
+        "pretty-quick": "^1.11.1",
+        "ts-jest": "^24.0.2",
+        "typescript": "3.5.2"
     },
     "browserslist": {
         "production": [
