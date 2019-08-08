@@ -24,7 +24,8 @@
         "no-var": "error",
         "prefer-arrow-callback": "error",
         "prefer-const": "warn",
-        "@typescript-eslint/explicit-function-return-type": "off"
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "max-len": ["error", { "code": 100, "ignoreUrls": true }]
     },
     "settings": {
         "react": {

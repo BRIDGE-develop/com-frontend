@@ -1,14 +1,15 @@
-import React, { useState, ChangeEvent } from 'react';
+import React from 'react';
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react';
 
+import useForm from 'hooks/useForms';
+
+export interface LoginState {
+    email: string;
+    password: string;
+}
+
 const Login: React.FC = () => {
-    const [values, setValues] = useState();
-
-    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = event.target;
-
-        setValues({ ...values, [name]: value });
-    };
+    const { values, handleChange, handleSubmit } = useForm<LoginState>();
 
     return (
         <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
@@ -16,16 +17,18 @@ const Login: React.FC = () => {
                 <Header as='h2' color='teal' textAlign='center'>
                     <Image src='/logo.png' alt='add later' /> Log-in to your account
                 </Header>
-                <Form size='large'>
+                <Form size='large' onSubmit={handleSubmit}>
                     <Segment stacked>
                         <Form.Input
                             fluid
                             icon='user'
                             iconPosition='left'
                             placeholder='E-mail address'
+                            type='email'
                             autoComplete='new-email'
                             name='email'
                             onChange={handleChange}
+                            value={values.email || ''}
                         />
                         <Form.Input
                             fluid
@@ -36,9 +39,10 @@ const Login: React.FC = () => {
                             autoComplete='new-password'
                             name='password'
                             onChange={handleChange}
+                            value={values.password || ''}
                         />
 
-                        <Button color='teal' fluid size='large'>
+                        <Button color='teal' fluid size='large' type='submit'>
                             Login
                         </Button>
                     </Segment>
