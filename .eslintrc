@@ -15,7 +15,7 @@
         "plugin:react/recommended",
         "plugin:jest/recommended"
     ],
-    "plugins": ["react", "@typescript-eslint", "prettier", "react-hooks", "jest"],
+    "plugins": ["@typescript-eslint", "prettier", "react", "react-hooks", "jest"],
     "rules": {
         "prettier/prettier": ["error", { "singleQuote": true }],
         "react-hooks/rules-of-hooks": "error",

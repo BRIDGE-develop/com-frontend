@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 // import axios from 'axios';
 import validator from 'validator';
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react';
-import { disableValidator } from 'utils/validator';
+import { disableValidator } from 'util/validator';
 
 const Login: React.FC = () => {
     const [values, setValues] = useState({ email: '', password: '' });
