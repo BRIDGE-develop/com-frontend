@@ -1,22 +1,28 @@
-import React from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
+// import axios from 'axios';
+import validator from 'validator';
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react';
-
-import useForm from 'hooks/useForms';
-import { disableValidator, loginValidator } from 'utils/validator';
-
-export interface LoginState {
-    email: string;
-    password: string;
-}
-
-const api = (values: LoginState) => {
-    axios.post(`/user/login`, values);
-};
+import { disableValidator } from 'utils/validator';
 
 const Login: React.FC = () => {
-    const { values, errors, handleChange, handleSubmit } = useForm<LoginState>(api, loginValidator);
+    const [values, setValues] = useState({ email: '', password: '' });
+    const [errors, setErrors] = useState({ emailError: '', loginError: '' });
 
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = event.target;
+        setValues(values => ({ ...values, [name]: value }));
+    };
+
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+        if (event) event.preventDefault();
+        if (!validator.isEmail(values.email)) {
+            return setErrors({ ...errors, emailError: '正しいメール形式で入力してください。' });
+        }
+
+        // const result = await axios.post('');
+
+        // result.status;
+    };
     return (
         <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
             <Grid.Column style={{ maxWidth: 450 }}>
@@ -35,7 +41,7 @@ const Login: React.FC = () => {
                             name='email'
                             onChange={handleChange}
                             value={values.email || ''}
-                            error={errors.email}
+                            error={errors.emailError}
                         />
                         <Form.Input
                             fluid
@@ -48,7 +54,6 @@ const Login: React.FC = () => {
                             onChange={handleChange}
                             value={values.password || ''}
                         />
-
                         <Button
                             color='teal'
                             fluid
