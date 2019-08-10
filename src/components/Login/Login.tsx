@@ -16,7 +16,10 @@ const Login: React.FC = () => {
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         if (event) event.preventDefault();
         if (!validator.isEmail(values.email)) {
-            return setErrors({ ...errors, emailError: '正しいメール形式で入力してください。' });
+            return setErrors({
+                ...errors,
+                emailError: '正しいメール形式で入力してください。',
+            });
         }
 
         // const result = await axios.post('');

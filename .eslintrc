@@ -7,19 +7,14 @@
     },
     "extends": [
         "eslint:recommended",
-        "prettier/react",
-        "prettier/@typescript-eslint",
         "plugin:@typescript-eslint/recommended",
-        "plugin:prettier/recommended",
         "plugin:react/recommended",
-        "plugin:jest/recommended"
+        "plugin:jest/recommended",
+        "prettier/react",
+        "plugin:prettier/recommended"
     ],
     "plugins": ["@typescript-eslint", "prettier", "react", "react-hooks", "jest"],
     "rules": {
-        "indent": ["error", 4],
-        "quotes": ["error", "single"],
-        "linebreak-style": ["error", "unix"],
-        "max-len": ["error", { "code": 100, "ignoreUrls": true }],
         "react-hooks/rules-of-hooks": "error",
         "react-hooks/exhaustive-deps": "error",
         "react/prop-types": "off",
