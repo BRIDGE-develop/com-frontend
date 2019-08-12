@@ -2,26 +2,22 @@
     "name": "com-frontend",
     "version": "0.1.0",
     "private": true,
-    "scripts": {
-        "start": "cross-env PORT=8080 react-scripts start",
-        "build": "react-scripts build",
-        "test": "react-scripts test",
-        "eject": "react-scripts eject",
-        "lint": "eslint ./src/**/*.{js,jsx,ts,tsx}"
-    },
     "dependencies": {
-        "@types/jest": "24.0.15",
-        "@types/node": "12.0.10",
-        "@types/react": "16.8.22",
-        "@types/react-dom": "16.8.4",
         "react": "^16.8.6",
         "react-dom": "^16.8.6",
-        "react-scripts": "3.0.1",
-        "typescript": "3.5.2"
+        "react-router-dom": "^5.0.1",
+        "react-scripts": "3.0.1"
     },
     "devDependencies": {
+        "@types/jest": "24.0.15",
+        "@types/node": "12.0.12",
+        "@types/react": "16.8.23",
+        "@types/react-dom": "16.8.4",
+        "@types/react-router-dom": "^4.3.4",
         "@typescript-eslint/eslint-plugin": "^1.13.0",
         "@typescript-eslint/parser": "^1.13.0",
+        "@types/styled-components": "^4.1.18",
+        "@types/lodash": "^4.14.136",
         "cross-env": "^5.2.0",
         "eslint-config-prettier": "^6.0.0",
         "eslint-config-react": "^1.1.7",
@@ -31,8 +27,24 @@
         "husky": "^3.0.2",
         "lint-staged": "^9.2.1",
         "post-npm-install": "^1.0.0",
+        "lodash": "^4.17.15",
+        "styled-components": "^4.3.2",
+        "semantic-ui-react": "^0.87.2",
+        "semantic-ui-css": "^2.4.1",
         "prettier": "^1.18.2",
-        "pretty-quick": "^1.11.1"
+        "pretty-quick": "^1.11.1",
+        "ts-jest": "^24.0.2",
+        "typescript": "3.5.2"
+    },
+    "scripts": {
+        "start": "cross-env PORT=8080 react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject",
+        "lint": "eslint ./src/**/*.{ts,tsx,js,jsx}"
+    },
+    "eslintConfig": {
+        "extends": "react-app"
     },
     "browserslist": {
         "production": [

@@ -10,5 +10,5 @@ insert_final_newline = true
 
 # Matches multiple files with brace expansion notation
 # Set default charset
-[*.{ts,tsx}]
+[*.{js,ts,jsx,tsx}]
 charset = utf-8

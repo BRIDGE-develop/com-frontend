@@ -1,24 +1,27 @@
 import React from 'react';
-import logo from './logo.svg';
+import { Route } from 'react-router-dom';
+
 import './App.css';
+
+import Nav from './app/component/nav';
+import LoginForm from './app/login/login';
+import Dashboard from './app/dashboard/dashboard';
+import user from './app/manage/user/user';
+import Skill from './app/manage/skill/skill';
+import FooterBar from './app/component/FooterBar';
 
 const App: React.FC = () => {
     return (
-        <div className="App">
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-                <p>
-                    Edit <code>src/App.tsx</code> and save to reload.
-                </p>
-                <a
-                    className="App-link"
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Learn React
-                </a>
-            </header>
+        <div>
+            <Nav />
+            <div className="contentsRouter">
+                <Route exact path="/" component={LoginForm} />
+                <Route path="/login" component={LoginForm} />
+                <Route path="/user" component={user} />
+                <Route path="/dashboard" component={Dashboard} />
+                <Route path="/skill" component={Skill} />
+            </div>
+            <FooterBar />
         </div>
     );
 };
