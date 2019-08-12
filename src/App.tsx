@@ -9,6 +9,7 @@ import Dashboard from './app/dashboard/dashboard';
 import user from './app/manage/user/user';
 import Skill from './app/manage/skill/skill';
 import FooterBar from './app/component/FooterBar';
+import Paycheck from './app/paycheck/paycheck';
 
 const App: React.FC = () => {
     return (
@@ -20,6 +21,7 @@ const App: React.FC = () => {
                 <Route path="/user" component={user} />
                 <Route path="/dashboard" component={Dashboard} />
                 <Route path="/skill" component={Skill} />
+                <Route path="/paycheck" component={Paycheck} />
             </div>
             <FooterBar />
         </div>

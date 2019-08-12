@@ -22,7 +22,7 @@ const Nav = () => (
                 <Menu.Item as={Link} to="a">
                     안건
                 </Menu.Item>
-                <Menu.Item as={Link} to="a">
+                <Menu.Item as={Link} to="/paycheck">
                     급여명세서
                 </Menu.Item>
                 <Menu.Item as={Link} to="a">
