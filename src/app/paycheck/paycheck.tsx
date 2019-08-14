@@ -24,27 +24,27 @@ export default class Paycheck extends Component {
         paycheck: {
             entrustment: 720000,
         },
-        deduction: {
-            healthInsurance: 0, //健康保険
-            nursingCare: 0, //介護保険
-            welfare: 0, //厚生年金
-            employmentInsurance: 0, //雇用保険
-            socialInsurance: 0, //社会保険計
-            incomeTax: 0, //所得税
-            residentTax: 0, //住民税
-        },
-        work: {
-            workingDays: 0, //出勤日数
-            paidDays: 0, //有給日数
-            absence: 0, //欠勤日数
-            officeHours: 0, //出勤時間
-            overtime: 0, //残業時間
-            daysOff: 0, //休出日数
-            timeOff: 0, //休出時間
-            lateNightOvertime: 0, //深夜残業
-            earlyAndLateTimes: 0, //遅早回数
-            lateHour: 0, //遅早時間
-        },
+        // deduction: {
+        //     healthInsurance: 0, //健康保険
+        //     nursingCare: 0, //介護保険
+        //     welfare: 0, //厚生年金
+        //     employmentInsurance: 0, //雇用保険
+        //     socialInsurance: 0, //社会保険計
+        //     incomeTax: 0, //所得税
+        //     residentTax: 0, //住民税
+        // },
+        // work: {
+        //     workingDays: 0, //出勤日数
+        //     paidDays: 0, //有給日数
+        //     absence: 0, //欠勤日数
+        //     officeHours: 0, //出勤時間
+        //     overtime: 0, //残業時間
+        //     daysOff: 0, //休出日数
+        //     timeOff: 0, //休出時間
+        //     lateNightOvertime: 0, //深夜残業
+        //     earlyAndLateTimes: 0, //遅早回数
+        //     lateHour: 0, //遅早時間
+        // },
     };
 
     handleItemClick = (e, { name }: MenuItemProps) => this.setState({ activeItem: name });
