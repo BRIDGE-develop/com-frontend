@@ -20,7 +20,7 @@ const StyledContainer = styled.div`
 export default class Paycheck extends Component {
     state = {
         activeItem: '19年07月分',
-        userName: '李　振燮 ',
+        userName: '李振燮',
         paycheck: {
             entrustment: 720000,
         },
@@ -114,7 +114,7 @@ export default class Paycheck extends Component {
                                         <List.Item>
                                             <Header size="medium">
                                                 {this.state.userName}
-                                                {'様'}
+                                                {'　様'}
                                             </Header>
                                         </List.Item>
                                     </List>
@@ -202,12 +202,14 @@ export default class Paycheck extends Component {
                                     </Table.Row>
 
                                     <Table.Row textAlign="right">
-                                        <Table.Cell>0</Table.Cell>
                                         <Table.Cell></Table.Cell>
                                         <Table.Cell></Table.Cell>
                                         <Table.Cell></Table.Cell>
                                         <Table.Cell></Table.Cell>
                                         <Table.Cell></Table.Cell>
+                                        <Table.Cell>
+                                            <span>&nbsp;&nbsp;</span>
+                                        </Table.Cell>
                                     </Table.Row>
 
                                     <Table.Row textAlign="center" warning>
@@ -278,12 +280,14 @@ export default class Paycheck extends Component {
                                     </Table.Row>
 
                                     <Table.Row textAlign="right">
-                                        <Table.Cell>0</Table.Cell>
                                         <Table.Cell></Table.Cell>
                                         <Table.Cell></Table.Cell>
                                         <Table.Cell></Table.Cell>
                                         <Table.Cell></Table.Cell>
                                         <Table.Cell></Table.Cell>
+                                        <Table.Cell>
+                                            <span>&nbsp;&nbsp;</span>
+                                        </Table.Cell>
                                     </Table.Row>
 
                                     <Table.Row textAlign="center" warning>
@@ -296,7 +300,9 @@ export default class Paycheck extends Component {
                                     </Table.Row>
 
                                     <Table.Row textAlign="right">
-                                        <Table.Cell>0</Table.Cell>
+                                        <Table.Cell>
+                                            <span>&nbsp;&nbsp;</span>
+                                        </Table.Cell>
                                         <Table.Cell></Table.Cell>
                                         <Table.Cell></Table.Cell>
                                         <Table.Cell></Table.Cell>
