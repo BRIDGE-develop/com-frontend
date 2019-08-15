@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-// import axios from 'axios';
+import axios from 'axios';
 import validator from 'validator';
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react';
 import { disableValidator } from 'util/validator';
@@ -15,6 +15,7 @@ const Login: React.FC = () => {
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         if (event) event.preventDefault();
+
         if (!validator.isEmail(values.email)) {
             return setErrors({
                 ...errors,
@@ -22,8 +23,7 @@ const Login: React.FC = () => {
             });
         }
 
-        // const result = await axios.post('');
-
+        const result = await axios.post('/v0/user/token', values);
         // result.status;
     };
     return (
