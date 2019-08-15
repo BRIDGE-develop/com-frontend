@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
     Menu,
     Grid,
@@ -10,6 +10,10 @@ import {
     Button,
     Input,
     Label,
+    Segment,
+    MenuItemProps,
+    Form,
+    DropdownProps,
 } from 'semantic-ui-react';
 import { TitleDiv } from '../component/title';
 import styled from 'styled-components';
@@ -19,7 +23,30 @@ const StyledContainer = styled.div`
     padding-top: 20px;
 `;
 
-const Paycheck = () => {
+const year = [
+    { key: '2019', text: '2019', value: '2019' },
+    { key: '2020', text: '2020', value: '2020' },
+    { key: '2021', text: '2021', value: '2021' },
+    { key: '2022', text: '2022', value: '2022' },
+    { key: '2023', text: '2023', value: '2023' },
+];
+
+const month = [
+    { key: '1', text: '1', value: '1' },
+    { key: '2', text: '2', value: '2' },
+    { key: '3', text: '3', value: '3' },
+    { key: '4', text: '4', value: '4' },
+    { key: '5', text: '5', value: '5' },
+    { key: '6', text: '6', value: '6' },
+    { key: '7', text: '7', value: '7' },
+    { key: '8', text: '8', value: '8' },
+    { key: '9', text: '9', value: '9' },
+    { key: '10', text: '10', value: '10' },
+    { key: '11', text: '11', value: '11' },
+    { key: '12', text: '12', value: '12' },
+];
+
+const Paycheck: React.FC = () => {
     const userName = '李振燮';
     const items = [
         { iDate: '19年08月分', iSalary: 720000 },
@@ -32,13 +59,29 @@ const Paycheck = () => {
         { iDate: '19年01月分', iSalary: 70000 },
     ];
 
-    const [date, setDate] = useState('19年08月分');
-    const [salary, setSalary] = useState(0);
-
-    useEffect(() => {
-        const _salary = items.filter(item => item.iDate === date)[0].iSalary;
-        setSalary(_salary);
+    const [values, setValues] = useState({
+        date: items[0].iDate,
+        salary: items[0].iSalary,
+        addMode: false,
     });
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        setValues(values => ({ ...values, [name]: value }));
+    };
+
+    const clickChangeMonth = (e: React.MouseEvent<HTMLAnchorElement>, data: MenuItemProps) => {
+        setValues(_ => ({ date: data.name as string, salary: data.salary, addMode: false }));
+    };
+
+    const clickChangeMode = (e: React.MouseEvent<HTMLButtonElement>) => {
+        setValues({ date: '' as string, salary: 0, addMode: true });
+    };
+
+    const changeDropdown = (e: React.SyntheticEvent<HTMLElement>, data: DropdownProps) => {
+        const { name, value } = data;
+        setValues(values => ({ ...values, [name]: value }));
+    };
 
     return (
         <Container>
@@ -46,15 +89,18 @@ const Paycheck = () => {
             <StyledContainer>
                 <Grid relaxed>
                     <Grid.Column width={4}>
-                        <Button color="teal">新規作成</Button>
+                        <Button color="teal" onClick={clickChangeMode}>
+                            新規作成
+                        </Button>
                         <Menu pointing secondary vertical>
                             {items.map((item, index) => (
                                 <Menu.Item
                                     name={item.iDate}
-                                    salary={item.iSalary}
-                                    // active={date}
-                                    onClick={() => setDate(item.iDate)}
+                                    salary={item.iSalary || 0}
+                                    active={values.date === item.iDate || false}
+                                    onClick={clickChangeMonth}
                                     key={index}
+                                    value="date"
                                 />
                             ))}
                         </Menu>
@@ -86,7 +132,7 @@ const Paycheck = () => {
                                 <Header
                                     size="huge"
                                     content="給料支給明細書"
-                                    subheader={date}
+                                    subheader={values.date}
                                 ></Header>
                             </Grid.Column>
                             <Grid.Column verticalAlign="middle" textAlign="right">
@@ -125,7 +171,7 @@ const Paycheck = () => {
                                             thousandSeparator={true}
                                             prefix={'¥'}
                                             displayType="text"
-                                            value={salary}
+                                            value={values.salary}
                                         />
                                     </Table.Cell>
                                     <Table.Cell></Table.Cell>
@@ -154,7 +200,7 @@ const Paycheck = () => {
                                             thousandSeparator={true}
                                             prefix={'¥'}
                                             displayType="text"
-                                            value={salary}
+                                            value={values.salary}
                                         />
                                     </Table.Cell>
                                     <Table.Cell>
@@ -162,7 +208,7 @@ const Paycheck = () => {
                                             thousandSeparator={true}
                                             prefix={'¥'}
                                             displayType="text"
-                                            value={salary}
+                                            value={values.salary}
                                         />
                                     </Table.Cell>
                                 </Table.Row>
@@ -210,7 +256,7 @@ const Paycheck = () => {
                                             thousandSeparator={true}
                                             prefix={'¥'}
                                             displayType="text"
-                                            value={salary * 0.11}
+                                            value={values.salary * 0.11}
                                         />
                                     </Table.Cell>
                                     <Table.Cell></Table.Cell>
@@ -240,7 +286,7 @@ const Paycheck = () => {
                                             thousandSeparator={true}
                                             prefix={'¥'}
                                             displayType="text"
-                                            value={salary * 0.11}
+                                            value={values.salary * 0.11}
                                         />
                                     </Table.Cell>
                                 </Table.Row>
@@ -314,7 +360,7 @@ const Paycheck = () => {
                                             thousandSeparator={true}
                                             prefix={'¥'}
                                             displayType="text"
-                                            value={salary * 0.89}
+                                            value={values.salary * 0.89}
                                         />
                                     </Table.Cell>
                                     <Table.Cell></Table.Cell>
@@ -323,22 +369,58 @@ const Paycheck = () => {
                                             thousandSeparator={true}
                                             prefix={'¥'}
                                             displayType="text"
-                                            value={salary * 0.89}
+                                            value={values.salary * 0.89}
                                         />
                                     </Table.Cell>
                                 </Table.Row>
                             </Table.Body>
                         </Table>
-                        <Input
-                            labelPosition="right"
-                            type="text"
-                            placeholder={salary}
-                            onChange={e => setSalary((e.target.value as unknown) as number)}
-                        >
-                            <Label basic>$</Label>
-                            <input />
-                        </Input>
-                        <Button color="orange">修正</Button>
+                        {!values.addMode ? (
+                            <Segment color="orange" textAlign="center">
+                                <Header content="給料修正" />
+                                <Input
+                                    labelPosition="right"
+                                    type="text"
+                                    placeholder={values.salary}
+                                >
+                                    <Label basic>$</Label>
+                                    <input onChange={handleChange} name="salary" />
+                                </Input>
+                                <Button color="orange">修正</Button>
+                            </Segment>
+                        ) : (
+                            <Segment color="teal" textAlign="center">
+                                <Header content="給料作成" />
+                                <Form unstackable>
+                                    <Form.Group inline widths="12">
+                                        <Form.Select
+                                            compact
+                                            name="year"
+                                            placeholder="2019"
+                                            label="年"
+                                            options={year}
+                                            onChange={changeDropdown}
+                                        />
+                                        <Form.Select
+                                            compact
+                                            name="month"
+                                            placeholder="8"
+                                            label="月"
+                                            options={month}
+                                        />
+                                        <Form.Input
+                                            labelPosition="right"
+                                            type="text"
+                                            placeholder={0}
+                                        >
+                                            <Label basic>¥</Label>
+                                            <Input onChange={handleChange} name="salary" />
+                                        </Form.Input>
+                                        <Form.Button color="teal">作成</Form.Button>
+                                    </Form.Group>
+                                </Form>
+                            </Segment>
+                        )}
                     </Grid.Column>
                 </Grid>
             </StyledContainer>
