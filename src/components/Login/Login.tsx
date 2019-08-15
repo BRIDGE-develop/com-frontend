@@ -1,12 +1,19 @@
 import React, { useState } from 'react';
-import axios from 'axios';
-import validator from 'validator';
+import { withRouter } from 'react-router';
+import { History } from 'history';
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react';
+import validator from 'validator';
+import axios, { AxiosError } from 'axios';
 import { disableValidator } from 'util/validator';
 
-const Login: React.FC = () => {
+interface LoginProps {
+    history: History;
+}
+
+const Login: React.FC<LoginProps> = ({ history }) => {
     const [values, setValues] = useState({ email: '', password: '' });
-    const [emailError, setEmailError] = useState({ emailError: false, emailErrorMessage: '' });
+    const [emailError, setEmailError] = useState();
+    const [loginError, setloginError] = useState();
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
@@ -17,14 +24,31 @@ const Login: React.FC = () => {
         if (event) event.preventDefault();
 
         if (!validator.isEmail(values.email)) {
-            return setEmailError({
-                emailError: true,
-                emailErrorMessage: '正しいメール形式で入力してください。',
-            });
-        }
+            return setEmailError('正しいメール形式で入力してください。');
+        } else {
+            setEmailError(false);
+            axios
+                .post('/v0/user/token', values)
+                .then(response => {
+                    sessionStorage.setItem('isSignedIn', JSON.stringify(response.data));
 
-        const result = await axios.post('/v0/user/token', values);
-        // console.log(result.status);
+                    alert('로그인성공 다음화면만들고 이동하기');
+                    // move to next route
+                    // history.push()
+                })
+                .catch((err: AxiosError) => {
+                    switch (err.response && err.response.status) {
+                        case 404:
+                            return setloginError('入力したメールは存在しません。');
+                        case 401:
+                            return setloginError('パスワードが間違っています。');
+                        default:
+                            setloginError(
+                                'サーバーエラーが発生しました。管理者にお問い合わせしてください。'
+                            );
+                    }
+                });
+        }
     };
     return (
         <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
@@ -32,6 +56,7 @@ const Login: React.FC = () => {
                 <Header as='h2' color='teal' textAlign='center'>
                     <Image src='/logo.png' alt='add later' /> Log-in to your account
                 </Header>
+                {loginError && <Message error content={loginError} />}
                 <Form size='large' onSubmit={handleSubmit}>
                     <Segment stacked>
                         <Form.Input
@@ -39,12 +64,11 @@ const Login: React.FC = () => {
                             icon='user'
                             iconPosition='left'
                             placeholder='E-mail address'
-                            // type='email'
                             autoComplete='new-email'
                             name='email'
                             onChange={handleChange}
-                            value={values.email || ''}
-                            error={emailError.emailError && emailError.emailErrorMessage}
+                            value={values.email}
+                            error={emailError}
                         />
                         <Form.Input
                             fluid
@@ -55,7 +79,7 @@ const Login: React.FC = () => {
                             autoComplete='new-password'
                             name='password'
                             onChange={handleChange}
-                            value={values.password || ''}
+                            value={values.password}
                         />
                         <Button
                             color='teal'
@@ -68,12 +92,9 @@ const Login: React.FC = () => {
                         </Button>
                     </Segment>
                 </Form>
-                <Message>
-                    New to us? <a href='/'>Sign Up</a>
-                </Message>
             </Grid.Column>
         </Grid>
     );
 };
 
-export default Login;
+export default withRouter(Login);
