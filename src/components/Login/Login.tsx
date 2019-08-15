@@ -6,7 +6,7 @@ import { disableValidator } from 'util/validator';
 
 const Login: React.FC = () => {
     const [values, setValues] = useState({ email: '', password: '' });
-    const [errors, setErrors] = useState({ emailError: '', loginError: '' });
+    const [emailError, setEmailError] = useState({ emailError: false, emailErrorMessage: '' });
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
@@ -17,14 +17,14 @@ const Login: React.FC = () => {
         if (event) event.preventDefault();
 
         if (!validator.isEmail(values.email)) {
-            return setErrors({
-                ...errors,
-                emailError: '正しいメール形式で入力してください。',
+            return setEmailError({
+                emailError: true,
+                emailErrorMessage: '正しいメール形式で入力してください。',
             });
         }
 
         const result = await axios.post('/v0/user/token', values);
-        // result.status;
+        // console.log(result.status);
     };
     return (
         <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
@@ -44,7 +44,7 @@ const Login: React.FC = () => {
                             name='email'
                             onChange={handleChange}
                             value={values.email || ''}
-                            error={errors.emailError}
+                            error={emailError.emailError && emailError.emailErrorMessage}
                         />
                         <Form.Input
                             fluid
