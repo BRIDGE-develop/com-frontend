@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { withRouter } from 'react-router';
+import axios, { AxiosError } from 'axios';
 import { History } from 'history';
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react';
 import validator from 'validator';
-import axios, { AxiosError } from 'axios';
 import { disableValidator } from 'util/validator';
 
 interface LoginProps {
@@ -54,7 +54,7 @@ const Login: React.FC<LoginProps> = ({ history }) => {
         <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
             <Grid.Column style={{ maxWidth: 450 }}>
                 <Header as='h2' color='teal' textAlign='center'>
-                    <Image src='/logo.png' alt='add later' /> Log-in to your account
+                    <Image src='' alt='add later' /> Log-in to your account
                 </Header>
                 {loginError && <Message error content={loginError} />}
                 <Form size='large' onSubmit={handleSubmit}>
