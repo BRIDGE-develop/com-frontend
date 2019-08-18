@@ -1,16 +1,10 @@
 import React, { useState } from 'react';
-import { withRouter } from 'react-router';
 import axios, { AxiosError } from 'axios';
-import { History } from 'history';
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react';
 import validator from 'validator';
 import { disableValidator } from 'util/validator';
 
-interface LoginProps {
-    history: History;
-}
-
-const Login: React.FC<LoginProps> = ({ history }) => {
+const Login: React.FC = () => {
     const [values, setValues] = useState({ email: '', password: '' });
     const [emailError, setEmailError] = useState();
     const [loginError, setloginError] = useState();
@@ -32,9 +26,7 @@ const Login: React.FC<LoginProps> = ({ history }) => {
                 .then(response => {
                     sessionStorage.setItem('isSignedIn', JSON.stringify(response.data));
 
-                    alert('로그인성공 다음화면만들고 이동하기');
-                    // move to next route
-                    // history.push()
+                    // TODO: move to next route ex. history.push('nextPage')
                 })
                 .catch((err: AxiosError) => {
                     switch (err.response && err.response.status) {
@@ -56,10 +48,11 @@ const Login: React.FC<LoginProps> = ({ history }) => {
                 <Header as='h2' color='teal' textAlign='center'>
                     <Image src='' alt='add later' /> Log-in to your account
                 </Header>
-                {loginError && <Message error content={loginError} />}
+                {loginError && <Message data-testid='message' error content={loginError} />}
                 <Form size='large' onSubmit={handleSubmit}>
                     <Segment stacked>
                         <Form.Input
+                            data-testid='email'
                             fluid
                             icon='user'
                             iconPosition='left'
@@ -82,6 +75,7 @@ const Login: React.FC<LoginProps> = ({ history }) => {
                             value={values.password}
                         />
                         <Button
+                            data-testid='loginButton'
                             color='teal'
                             fluid
                             size='large'
@@ -97,4 +91,4 @@ const Login: React.FC<LoginProps> = ({ history }) => {
     );
 };
 
-export default withRouter(Login);
+export default Login;
