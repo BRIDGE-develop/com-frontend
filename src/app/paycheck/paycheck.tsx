@@ -383,7 +383,7 @@ const Paycheck: React.FC = () => {
                                     type="text"
                                     placeholder={values.salary}
                                 >
-                                    <Label basic>$</Label>
+                                    <Label basic>¥</Label>
                                     <input onChange={handleChange} name="salary" />
                                 </Input>
                                 <Button color="orange">修正</Button>
