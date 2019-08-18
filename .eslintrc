@@ -31,5 +31,13 @@
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
         "project": "./tsconfig.json"
-    }
+    },
+    "overrides": [
+        {
+            "files": ["*.test.{ts|tsx}"],
+            "rules": {
+                "@typescript-eslint/no-explicit-any": "off"
+            }
+        }
+    ]
 }
