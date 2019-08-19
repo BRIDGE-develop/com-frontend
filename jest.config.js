@@ -3,4 +3,11 @@ module.exports = {
     testEnvironment: 'jsdom',
     verbose: true,
     modulePaths: ['<rootDir>/src'],
+    globals: {
+        'ts-jest': {
+            babelConfig: {
+                presets: ['@babel/preset-env', '@babel/preset-react'],
+            },
+        },
+    },
 };
