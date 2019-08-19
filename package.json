@@ -70,7 +70,7 @@
     "proxy": "http://localhost:3000",
     "husky": {
         "hooks": {
-            "pre-commit": "pretty-quick --staged --verbose && lint-staged && CI=true npm run test",
+            "pre-commit": "pretty-quick --staged --verbose && lint-staged && cross-env CI=true npm run test",
             "post-merge": "post-npm-install"
         }
     },
