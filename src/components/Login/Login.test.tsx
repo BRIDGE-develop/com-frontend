@@ -82,7 +82,7 @@ describe('Login', () => {
     it('saves response data when login is successful', async () => {
         const mock = new MockAdapter(axios);
 
-        const data = { email: 'dummy@email.com', admin: 1, maxAge: 'dummyTime' };
+        const data = { email: 'dummy@email.com', admin: 1, expiredAt: 'dummyTime' };
         mock.onPost('/v0/user/token').reply(200, data);
 
         const { getByPlaceholderText, getByTestId } = render(<Login />);
