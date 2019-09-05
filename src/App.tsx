@@ -6,7 +6,7 @@ import Login from './components/Login/Login';
 import './App.css';
 
 import Nav from './app/component/nav';
-import user from './app/manage/user/user';
+import user from './components/User/User';
 import Skill from './app/manage/skill/skill';
 import FooterBar from './app/component/FooterBar';
 import Paycheck from './app/paycheck/paycheck';
@@ -14,6 +14,7 @@ import Persoanl from './app/personal/personal';
 import Notice from './components/Notice/Notice';
 import NoticeDetail from './components/Notice/NoticeDetail';
 import NoticeWrite from './components/Notice/NoticeWrite';
+import UserAdd from './components/User/UserAdd';
 
 const App: React.FC = (): JSX.Element => {
     return (
@@ -22,6 +23,7 @@ const App: React.FC = (): JSX.Element => {
             <Switch>
                 <Route exact path="/" component={Login} />
                 <Route path="/user" component={user} />
+                <Route path="/useradd" component={UserAdd} />
                 <Route path="/skill" component={Skill} />
                 <Route path="/paycheck" component={Paycheck} />
                 <Route path="/personal" component={Persoanl} />
