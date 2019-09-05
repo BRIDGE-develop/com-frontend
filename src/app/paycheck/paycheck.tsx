@@ -93,7 +93,7 @@ const Paycheck: React.FC = (): JSX.Element => {
     };
 
     return (
-        <Container>
+        <Container style={{ minHeight: '89.6vh' }}>
             <TitleDiv name="Paycheck" />
             <StyledContainer>
                 <Grid relaxed>

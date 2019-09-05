@@ -52,7 +52,7 @@ const Persoanl: React.FC = (): JSX.Element => {
     // };
 
     return (
-        <StyleContainer>
+        <StyleContainer style={{ minHeight: '89.6vh' }}>
             <TitleDiv name="Personal" />
             <Divider horizontal>
                 <Header as="h3">
