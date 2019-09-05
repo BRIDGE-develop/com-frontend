@@ -1,29 +1,39 @@
+import { hot } from 'react-hot-loader/root';
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import Login from './components/Login/Login';
 
 import './App.css';
 
 import Nav from './app/component/nav';
-import LoginForm from './app/login/login';
-import Dashboard from './app/dashboard/dashboard';
-import user from './app/manage/user/user';
+import user from './components/User/User';
 import Skill from './app/manage/skill/skill';
 import FooterBar from './app/component/FooterBar';
+import Paycheck from './app/paycheck/paycheck';
+import Persoanl from './app/personal/personal';
+import Notice from './components/Notice/Notice';
+import NoticeDetail from './components/Notice/NoticeDetail';
+import NoticeWrite from './components/Notice/NoticeWrite';
+import UserAdd from './components/User/UserAdd';
 
-const App: React.FC = () => {
+const App: React.FC = (): JSX.Element => {
     return (
-        <div>
+        <BrowserRouter>
             <Nav />
-            <div className="contentsRouter">
-                <Route exact path="/" component={LoginForm} />
-                <Route path="/login" component={LoginForm} />
+            <Switch>
+                <Route exact path="/" component={Login} />
                 <Route path="/user" component={user} />
-                <Route path="/dashboard" component={Dashboard} />
+                <Route path="/useradd" component={UserAdd} />
                 <Route path="/skill" component={Skill} />
-            </div>
+                <Route path="/paycheck" component={Paycheck} />
+                <Route path="/personal" component={Persoanl} />
+                <Route path="/notice" component={Notice} />
+                <Route path="/noticedetail" component={NoticeDetail} />
+                <Route path="/noticewrite" component={NoticeWrite} />
+            </Switch>
             <FooterBar />
-        </div>
+        </BrowserRouter>
     );
 };
 
-export default App;
+export default hot(App);
