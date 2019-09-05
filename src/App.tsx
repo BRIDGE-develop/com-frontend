@@ -1,26 +1,31 @@
 import React from 'react';
-import logo from './logo.svg';
+import { Route } from 'react-router-dom';
+
 import './App.css';
 
-const App: React.FC = () => {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import Nav from './app/component/nav';
+import LoginForm from './app/login/login';
+import user from './app/manage/user/user';
+import Skill from './app/manage/skill/skill';
+import FooterBar from './app/component/FooterBar';
+import Paycheck from './app/paycheck/paycheck';
+import Persoanl from './app/personal/personal';
+
+const App: React.FC = (): JSX.Element => {
+    return (
+        <div>
+            <Nav />
+            <div className="contentsRouter">
+                <Route exact path="/" component={LoginForm} />
+                <Route path="/login" component={LoginForm} />
+                <Route path="/user" component={user} />
+                <Route path="/skill" component={Skill} />
+                <Route path="/paycheck" component={Paycheck} />
+                <Route path="/personal" component={Persoanl} />
+            </div>
+            <FooterBar />
+        </div>
+    );
+};
 
 export default App;
